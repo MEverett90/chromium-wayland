@@ -19,7 +19,7 @@ jobs:
           mkdir code
           mkdir code/automate
           mkdir code/chromium_git
-          cd ~/code
+          cd code
           sudo apt-get install curl file lsb-release procps python3 python3-pip
           curl 'https://chromium.googlesource.com/chromium/src/+/main/build/install-build-deps.py?format=TEXT' | base64 -d > install-build-deps.py
           sudo python3 ./install-build-deps.py --no-arm --no-chromeos-fonts --no-nacl
