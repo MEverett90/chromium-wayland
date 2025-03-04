@@ -36,7 +36,7 @@ jobs:
         working-directory: ~/code/automate
         run: |
           wget https://bitbucket.org/chromiumembedded/cef/raw/master/tools/automate/automate-git.py
-          echo '#!/bin/bash
+          echo '#!/bin/bash \
 python3 ../automate/automate-git.py --download-dir=/home/marshall/code/chromium_git --depot-tools-dir=/home/marshall/code/depot_tools --no-distrib --no-build' >> ~/code/chromium_git/update.sh
           chmod 755 ~/code/chromium_git/update.sh
 
