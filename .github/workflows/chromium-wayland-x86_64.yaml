@@ -32,7 +32,6 @@ jobs:
           export PATH=/home/marshall/code/depot_tools:$PATH
 
       - name: Create Automation Script
-        working-directory: code/automate
         run: |
           cp update.sh code/chromium_git/update.sh
           chmod 755 code/chromium_git/update.sh
