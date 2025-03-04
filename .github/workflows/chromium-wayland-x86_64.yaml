@@ -7,8 +7,7 @@ on:
 jobs:
   Upload-DC-Symbols:
     runs-on:
-      - self-hosted
-      - Linux
+      - ubuntu-latest
 
     steps:  
       - uses: actions/checkout@v3
