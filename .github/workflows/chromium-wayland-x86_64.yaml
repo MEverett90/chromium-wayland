@@ -41,7 +41,7 @@ jobs:
       - name: Run Script
         working-directory: code/chromium_git
         run: |
-          sudo ./update.sh
+          ./update.sh
 
 # Patch CEF
 
