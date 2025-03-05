@@ -39,7 +39,7 @@ jobs:
           wget https://bitbucket.org/chromiumembedded/cef/raw/master/tools/automate/automate-git.py
 
       - name: Run Script
-        working-directory: code/chromium_git
+        working-directory:
         run: |
           ./update.sh
 
