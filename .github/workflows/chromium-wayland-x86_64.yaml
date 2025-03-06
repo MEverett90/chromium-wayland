@@ -29,7 +29,7 @@ jobs:
         working-directory: code
         run: |
           git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
-          export PATH=/home/marshall/code/depot_tools:$PATH
+          export PATH=/home/dev/chromium-wayland/code/depot_tools:$PATH
 
       - name: Create Automation Script
         run: |
@@ -42,7 +42,10 @@ jobs:
         run: |
           ./code/chromium_git/update.sh
 
-# Patch CEF
+      - name: Apply Patch
+        working-directory: code/chromium_git/chromium/src
+        run: |
+          git apply ../../../../0001_enable_gl_without_angle.patch          
 
       - name: Setup Build
         working-directory: code/chromium_git/chromium/src/cef
@@ -54,6 +57,11 @@ jobs:
         working-directory: code/chromium_git/chromium/src
         run: |
           autoninja -C out/Debug_GN_x64 cefsimple chrome_sandbox
+
+      - name: Create Binary Distribution
+        working-directory: code/chromium_git
+        run: |
+          python3 cef/tools/make_distrib.py --output_dir binary_distrib/
 
 # Run script to create binary distribution
 # Publish binary distribution
