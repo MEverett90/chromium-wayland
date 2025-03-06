@@ -1,13 +1,21 @@
 name: Build Chromium-Wayland x86_64
 
 on: 
-  push:
+  # push:
   workflow_dispatch:
+  schedule:
+    - cron: "0 8 * * *"
+
 
 jobs:
-  Upload-DC-Symbols:
-    runs-on:
-      - ubuntu-latest
+  Build-Chromium-Wayland:
+    runs-on: [self-hosted, linux]
+
+    container:
+      image: ghcr.io/meta-flutter/ubuntu-20-dev:main
+      options:
+        --user root
+        --net=host
 
     steps:  
       - uses: actions/checkout@v3
@@ -59,9 +67,14 @@ jobs:
           autoninja -C out/Debug_GN_x64 cefsimple chrome_sandbox
 
       - name: Create Binary Distribution
-        working-directory: code/chromium_git
+        working-directory: code/chromium_git/chromium
         run: |
-          python3 cef/tools/make_distrib.py --output_dir binary_distrib/
+          python3 src/cef/tools/make_distrib.py --output_dir binary_distrib/
+          cd binary_distrib
+          tar -czf Chromium_Wayland_Binary_Distribution.tar.gz cef_binary*
 
-# Run script to create binary distribution
-# Publish binary distribution
+      - name: Publish
+        uses: actions/upload-artifact@v3
+        with:
+          name: Chromium_Wayland_Binary_Distribution
+          path: code/chromium_git/chromium/binary_distrib/Chromium_Wayland_Binary_Distribution.tar.gz
