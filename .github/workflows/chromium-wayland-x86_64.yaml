@@ -1,15 +1,24 @@
 name: Build Chromium-Wayland x86_64
 
 on: 
-  # push:
   workflow_dispatch:
-  schedule:
-    - cron: "0 8 * * *"
+    inputs:
+      srcrev: 
+        description: 'Chromium Release Tag'
+        required: True
+        default: ''
+      release: 
+        description: 'Release'
+        required: false
+        default: 'false'
 
 
 jobs:
   Build-Chromium-Wayland:
     runs-on: [self-hosted, linux]
+    env:
+      tag_debug:         chromium-wayland-debug-x86_64-${{ inputs.srcrev }}
+      notes_debug:       "Chromium-Wayland Binary Distribution - debug"
 
     container:
       image: ghcr.io/meta-flutter/ubuntu-20-dev:main
@@ -48,7 +57,7 @@ jobs:
 
       - name: Run Script
         run: |
-          ./code/chromium_git/update.sh
+          python3 code/automate/automate-git.py --download-dir=code/chromium_git --depot-tools-dir=code/depot_tools --no-distrib --no-build --chromium-checkout=refs/tags/${{ inputs.srcrev }}
 
       - name: Apply Patch
         working-directory: code/chromium_git/chromium/src
@@ -71,10 +80,25 @@ jobs:
         run: |
           python3 src/cef/tools/make_distrib.py --output_dir binary_distrib/
           cd binary_distrib
-          tar -czf Chromium_Wayland_Binary_Distribution.tar.gz cef_binary*
+          tar -czf $tag_debug.tar.gz cef_binary*
+          sha256sum -b $tag_debug.tar.gz         > $tag_debug.tar.gz.sha256
 
-      - name: Publish
-        uses: actions/upload-artifact@v3
+      - name: Publish Artifact
+        if: ${{ inputs.release != 'true' }}
+        uses: actions/upload-artifact@v4
         with:
-          name: Chromium_Wayland_Binary_Distribution
-          path: code/chromium_git/chromium/binary_distrib/Chromium_Wayland_Binary_Distribution.tar.gz
+            name: chromium-wayland-binary-distribution
+            path: |
+              code/chromium_git/chromium/binary_distrib/$tag_debug.tar.gz
+              code/chromium_git/chromium/binary_distrib/$tag_debug.tar.gz.sha256
+
+      - name: Release - Publish Release
+        if: ${{ inputs.release == 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh release delete "$tag_debug" --cleanup-tag -y |true
+          gh release create --draft "$tag_debug" --title "$tag_debug" --notes "$notes_debug"
+          gh release upload "$tag_debug" "$tag_debug.tar.gz" "$tag_debug.tar.gz.sha256"
+          gh release edit "$tag_debug" --draft=false
