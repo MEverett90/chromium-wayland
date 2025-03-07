@@ -23,7 +23,11 @@ jobs:
     container:
       image: ghcr.io/meta-flutter/ubuntu-20-dev:main
       options:
-        --user root
+        --log-driver=none
+        --user 1001:1001
+        --userns keep-id:uid=1001,gid=1001
+        --security-opt label=disable
+        --pids-limit=-1
 
     steps:  
       - uses: actions/checkout@v3
