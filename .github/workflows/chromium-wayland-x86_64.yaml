@@ -24,7 +24,7 @@ jobs:
       image: ghcr.io/meta-flutter/meta-flutter/ubuntu-20-chromium-wayland:main
       options:
         --log-driver=none
-        --user root
+        --user 1001:1001
         --userns keep-id:uid=1001,gid=1001
         --security-opt label=disable
         --pids-limit=-1
