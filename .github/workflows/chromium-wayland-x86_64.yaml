@@ -63,10 +63,10 @@ jobs:
         run: |
           python3 code/automate/automate-git.py --download-dir=code/chromium_git --depot-tools-dir=code/depot_tools --no-distrib --no-build --chromium-checkout=refs/tags/${{ inputs.srcrev }}
 
-      - name: Apply Patch
-        working-directory: code/chromium_git/chromium/src
-        run: |
-          git apply ../../../../chromium-wayland/0001_enable_gl_without_angle.patch          
+      # - name: Apply Patch
+        # working-directory: code/chromium_git/chromium/src
+        # run: |
+          # git apply ../../../../chromium-wayland/0001_enable_gl_without_angle.patch          
 
       - name: Setup Build
         working-directory: code/chromium_git/chromium/src/cef
