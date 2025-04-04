@@ -25,16 +25,16 @@ jobs:
       options:
         --log-driver=none
         --user 1001:1001
-        --userns keep-id
         --security-opt label=disable
         --pids-limit=-1
+        #--userns keep-id
         #--storage-opt overlay.mount_program=/usr/bin/fuse-overlayfs
         #--storage-opt overlay.mountopt=nodev,metacopy=on,noxattrs=1
 
     steps:  
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
-          persist-credentials: false
+          path: ''
 
       - name: Install packages
         run: |
