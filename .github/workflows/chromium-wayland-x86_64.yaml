@@ -38,6 +38,7 @@ jobs:
       - name: Get Repo
         run: |
           ls -la
+          ls -la code
           git clone https://github.com/MEverett90/chromium-wayland.git
           
       - name: Install packages
