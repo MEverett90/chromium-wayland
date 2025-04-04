@@ -37,12 +37,12 @@ jobs:
       #    path: ''
       - name: Get Repo
         run: |
-          ls -la
-          ls -la code
+          rm -rf chromium-wayland
           git clone https://github.com/MEverett90/chromium-wayland.git
           
       - name: Install packages
         run: |
+          rm -rf code
           mkdir code
           mkdir code/automate
           mkdir code/chromium_git
@@ -56,8 +56,6 @@ jobs:
 
       - name: Create Automation Script
         run: |
-          cp update.sh code/chromium_git/update.sh
-          chmod 755 code/chromium_git/update.sh
           cd code/automate
           wget https://bitbucket.org/chromiumembedded/cef/raw/master/tools/automate/automate-git.py
 
