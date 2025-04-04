@@ -51,7 +51,7 @@ jobs:
         run: |
           rm -rf depot_tools
           git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
-          export PATH=/home/dev/chromium-wayland/code/depot_tools:$PATH
+          export PATH=`pwd`/depot_tools:$PATH
 
       - name: Create Automation Script
         run: |
