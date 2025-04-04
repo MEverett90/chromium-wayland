@@ -37,7 +37,9 @@ jobs:
       #    path: ''
       - name: Get Repo
         run: |
-          git clone https://github.com/MEverett90/chromium-wayland.git .
+          ls -la
+          git clone https://github.com/MEverett90/chromium-wayland.git
+          
       - name: Install packages
         run: |
           mkdir code
@@ -65,7 +67,7 @@ jobs:
       - name: Apply Patch
         working-directory: code/chromium_git/chromium/src
         run: |
-          git apply ../../../../0001_enable_gl_without_angle.patch          
+          git apply ../../../../chromium-wayland/0001_enable_gl_without_angle.patch          
 
       - name: Setup Build
         working-directory: code/chromium_git/chromium/src/cef
