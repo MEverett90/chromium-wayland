@@ -41,7 +41,7 @@ jobs:
           mkdir code
           mkdir code/automate
           mkdir code/chromium_git
-          python3 ./install-build-deps.py --no-arm --no-chromeos-fonts --no-nacl
+          python3 /install-build-deps.py --no-arm --no-chromeos-fonts --no-nacl
 
       - name: Get Depot Tools
         working-directory: code
