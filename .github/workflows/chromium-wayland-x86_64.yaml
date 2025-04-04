@@ -41,9 +41,9 @@ jobs:
           
       - name: Install packages
         run: |
-          mkdir code
-          mkdir code/automate
-          mkdir code/chromium_git
+          mkdir -p code
+          mkdir -p code/automate
+          mkdir -p code/chromium_git
 
       - name: Get Depot Tools
         working-directory: code
