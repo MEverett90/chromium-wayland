@@ -37,6 +37,7 @@ jobs:
       #    path: ''
       - name: Get Repo
         run: |
+          apt install -y ninja-build
           rm -rf chromium-wayland
           git clone https://github.com/MEverett90/chromium-wayland.git
           
