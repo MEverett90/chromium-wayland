@@ -68,7 +68,7 @@ jobs:
       - name: Setup Build
         working-directory: code/chromium_git/chromium/src/cef
         run: |
-          export GN_DEFINES="use_sysroot=true use_allocator=none symbol_level=1 is_cfi=false use_thin_lto=false use_ozone=true ozone_auto_platforms=false ozone_platform_wayland=true use_xkbcommon=true use_gtk=false"
+          export GN_DEFINES="use_sysroot=true use_allocator=none symbol_level=1 is_cfi=false use_thin_lto=false use_ozone=true ozone_auto_platforms=false ozone_platform_x11=false ozone_platform_wayland=true use_xkbcommon=true use_gtk=false"
           ./cef_create_projects.sh
 
       - name: Build
