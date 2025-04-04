@@ -37,7 +37,7 @@ jobs:
       #    path: ''
       - name: Get Repo
         run: |
-          git clone origin-url . https://github.com/MEverett90/chromium-wayland.git 
+          git clone https://github.com/MEverett90/chromium-wayland.git .
       - name: Install packages
         run: |
           mkdir code
