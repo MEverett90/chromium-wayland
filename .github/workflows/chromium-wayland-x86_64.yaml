@@ -32,10 +32,12 @@ jobs:
         #--storage-opt overlay.mountopt=nodev,metacopy=on,noxattrs=1
 
     steps:  
-      - uses: actions/checkout@v4
-        with:
-          path: ''
-
+      #- uses: actions/checkout@v4
+      #  with:
+      #    path: ''
+      - name: Get Repo
+        run: |
+          git clone origin-url . https://github.com/MEverett90/chromium-wayland.git 
       - name: Install packages
         run: |
           mkdir code
