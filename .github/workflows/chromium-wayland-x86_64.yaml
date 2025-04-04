@@ -37,12 +37,10 @@ jobs:
       #    path: ''
       - name: Get Repo
         run: |
-          sudo rm -rf chromium-wayland
           git clone https://github.com/MEverett90/chromium-wayland.git
           
       - name: Install packages
         run: |
-          sudo rm -rf code
           mkdir code
           mkdir code/automate
           mkdir code/chromium_git
