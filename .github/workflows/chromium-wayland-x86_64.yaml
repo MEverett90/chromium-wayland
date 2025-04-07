@@ -73,6 +73,7 @@ jobs:
           export PATH=/__w/chromium-wayland/chromium-wayland/code/depot_tools:$PATH
           export GN_DEFINES="use_sysroot=true use_allocator=none symbol_level=2 is_cfi=false use_thin_lto=false use_ozone=true ozone_auto_platforms=false ozone_platform_x11=false ozone_platform_wayland=true use_xkbcommon=true use_gtk=false"
           ./cef_create_projects.sh
+          cd ..
           autoninja -C out/Debug_GN_x64 cefsimple chrome_sandbox
 
       - name: Build Release
@@ -81,6 +82,7 @@ jobs:
           export PATH=/__w/chromium-wayland/chromium-wayland/code/depot_tools:$PATH
           export GN_DEFINES="use_sysroot=true use_allocator=none symbol_level=1 is_cfi=false use_thin_lto=false use_ozone=true ozone_auto_platforms=false ozone_platform_x11=false ozone_platform_wayland=true use_xkbcommon=true use_gtk=false"
           ./cef_create_projects.sh
+          cd ..
           autoninja -C out/Release_GN_x64 cefsimple chrome_sandbox
 
       - name: Create Binary Distribution
