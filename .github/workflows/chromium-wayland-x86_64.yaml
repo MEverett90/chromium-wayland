@@ -77,6 +77,7 @@ jobs:
       - name: Build
         working-directory: code/chromium_git/chromium/src
         run: |
+          export PATH=/__w/chromium-wayland/chromium-wayland/code/depot_tools:$PATH
           autoninja -C out/Debug_GN_x64 cefsimple chrome_sandbox
 
       - name: Create Binary Distribution
