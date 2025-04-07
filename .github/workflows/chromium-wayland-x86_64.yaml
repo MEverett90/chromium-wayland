@@ -68,7 +68,7 @@ jobs:
           # git apply ../../../../chromium-wayland/0001_enable_gl_without_angle.patch          
 
       - name: Build Debug
-        working-directory: code/chromium_git/chromium/src
+        working-directory: code/chromium_git/chromium/src/cef
         run: |
           export PATH=/__w/chromium-wayland/chromium-wayland/code/depot_tools:$PATH
           export GN_DEFINES="use_sysroot=true use_allocator=none symbol_level=2 is_cfi=false use_thin_lto=false use_ozone=true ozone_auto_platforms=false ozone_platform_x11=false ozone_platform_wayland=true use_xkbcommon=true use_gtk=false"
@@ -76,7 +76,7 @@ jobs:
           autoninja -C out/Debug_GN_x64 cefsimple chrome_sandbox
 
       - name: Build Release
-        working-directory: code/chromium_git/chromium/src
+        working-directory: code/chromium_git/chromium/src/cef
         run: |
           export PATH=/__w/chromium-wayland/chromium-wayland/code/depot_tools:$PATH
           export GN_DEFINES="use_sysroot=true use_allocator=none symbol_level=1 is_cfi=false use_thin_lto=false use_ozone=true ozone_auto_platforms=false ozone_platform_x11=false ozone_platform_wayland=true use_xkbcommon=true use_gtk=false"
