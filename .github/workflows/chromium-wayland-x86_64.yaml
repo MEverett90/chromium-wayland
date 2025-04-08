@@ -56,11 +56,11 @@ jobs:
         run: |
           cd code/automate
           rm -rf automate-git.py
-          wget https://bitbucket.org/chromiumembedded/cef/raw/6723/tools/automate/automate-git.py
+          wget https://bitbucket.org/chromiumembedded/cef/raw/${{ inputs.cef_branch }}/tools/automate/automate-git.py
 
       - name: Run Script
         run: |
-          python3 code/automate/automate-git.py --download-dir=code/chromium_git --depot-tools-dir=code/depot_tools --no-distrib --no-build --branch=6723 
+          python3 code/automate/automate-git.py --download-dir=code/chromium_git --depot-tools-dir=code/depot_tools --no-distrib --no-build --branch=${{ inputs.cef_branch }} 
 
       # - name: Apply Patch
         # working-directory: code/chromium_git/chromium/src
