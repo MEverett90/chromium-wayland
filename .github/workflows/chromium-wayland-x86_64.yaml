@@ -3,8 +3,8 @@ name: Build Chromium-Wayland x86_64
 on: 
   workflow_dispatch:
     inputs:
-      srcrev: 
-        description: 'Chromium Release Tag'
+      cef_branch: 
+        description: 'CEF Git Branch'
         required: True
         default: ''
       release: 
