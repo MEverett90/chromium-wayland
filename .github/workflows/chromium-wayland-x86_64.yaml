@@ -100,8 +100,8 @@ jobs:
         with:
             name: chromium-wayland-binary-distribution
             path: |
-              code/chromium_git/chromium/src/out/binary_distrib/$tag_debug.tar.gz
-              code/chromium_git/chromium/src/out/binary_distrib/$tag_debug.tar.gz.sha256
+              code/chromium_git/chromium/src/out/binary_distrib/${{ env.tag_debug }}.tar.gz
+              code/chromium_git/chromium/src/out/binary_distrib/${{ env.tag_debug }}.tar.gz.sha256
 
       - name: Release - Publish Release
         if: ${{ inputs.release == 'true' }}
