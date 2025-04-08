@@ -56,7 +56,7 @@ jobs:
         run: |
           cd code/automate
           rm -rf automate-git.py
-          wget https://bitbucket.org/chromiumembedded/cef/raw/master/tools/automate/automate-git.py
+          wget https://bitbucket.org/chromiumembedded/cef/raw/6723/tools/automate/automate-git.py
 
       - name: Run Script
         run: |
