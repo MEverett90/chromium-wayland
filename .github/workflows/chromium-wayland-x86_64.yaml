@@ -60,7 +60,7 @@ jobs:
 
       - name: Run Script
         run: |
-          python3 code/automate/automate-git.py --download-dir=code/chromium_git --depot-tools-dir=code/depot_tools --no-distrib --no-build --checkout=6723 --chromium-checkout=refs/tags/${{ inputs.srcrev }}
+          python3 code/automate/automate-git.py --download-dir=code/chromium_git --depot-tools-dir=code/depot_tools --no-distrib --no-build --branch=6723 --chromium-checkout=refs/tags/${{ inputs.srcrev }}
 
       # - name: Apply Patch
         # working-directory: code/chromium_git/chromium/src
