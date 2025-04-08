@@ -88,6 +88,7 @@ jobs:
       - name: Create Binary Distribution
         working-directory: code/chromium_git/chromium/src/out
         run: |
+          export PATH=/__w/chromium-wayland/chromium-wayland/code/depot_tools:$PATH
           python3 ../cef/tools/make_distrib.py --output-dir binary_distrib/ --ninja-build true --ozone true --x64-build true --no-docs true
           cd binary_distrib
           tar -czf $tag_debug.tar.gz cef_binary*
